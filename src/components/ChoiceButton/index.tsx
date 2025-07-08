@@ -38,8 +38,6 @@ const ChoiceButton: FC<ChoiceButtonProps> = ({
     }
   };
 
-  console.log('getGestureIcon()', getGestureIcon());
-
   const buttonClasses = [
     styles.choiceButton,
     styles[gesture],

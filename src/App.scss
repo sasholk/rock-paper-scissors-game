@@ -18,7 +18,6 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  width: 100%;
 }
 
 .header {
@@ -50,7 +49,8 @@ main {
   justify-content: flex-start;
   flex-grow: 1;
   width: 100%;
-  padding: 1rem;
+  padding-block: 1rem;
+  margin-inline: 1rem;
 
   border-radius: 1rem;
   background-color: #e2e2e2;
