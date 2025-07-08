@@ -1,14 +1,26 @@
-# Rock • Paper • Scissors Game
+# Rock Paper Scissors
 
-A modern, accessible implementation of the classic Rock Paper Scissors game built with React 19, TypeScript, and Vite.
+A modern implementation of the classic Rock Paper Scissors game built with React and TypeScript.
 
-![Game Screenshot](./screenshot.png)
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Available Scripts](#available-scripts)
+- [Testing](#testing)
+- [Project Structure](#project-structure)
+
+![screenshot of the Rock Paper Scissors game](screenshot.png)
 
 ## Features
 
-- Clean, responsive UI that works from 360px mobile to 1440px desktop
-- Smooth animations using CSS keyframes
-- Strict TypeScript implementation
+- Interactive gameplay with animations
+- Score tracking
+- Responsive design for all devices
+- Gesture icons with visual feedback
+- Game over screen with results
 - Accessible design with keyboard navigation and ARIA attributes
 - Unit tests for game logic using Vitest
 - Follows SOLID principles
@@ -18,48 +30,94 @@ A modern, accessible implementation of the classic Rock Paper Scissors game buil
 - **React 19**: Functional components and hooks
 - **TypeScript**: Strict mode enabled for type safety
 - **Vite**: For fast development and optimized builds
-- **CSS Modules**: For component-scoped styling
+- **SCSS Modules**: For component-scoped styling with advanced features
 - **React Icons**: For gesture icons
 - **Vitest + Testing Library**: For unit testing
 - **ESLint + Prettier**: For code quality
 - **Husky + lint-staged**: For pre-commit hooks
 
-## Quick Start
+## Installation
 
 ### Prerequisites
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+
+- Node.js (v18 or newer)
+- npm or yarn
+
+### Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/sasholk/rock-paper-scissors-game.git
+cd rock-paper-scissors-game
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+# or
+yarn install
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Quick Start
+
+To start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+This will start the development server at `http://localhost:5173/`.
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+- `npm run test` - Run tests
+- `npm run test:coverage` - Run tests with coverage report
+
+## Testing
+
+The application uses Vitest and Testing Library for unit testing. To run the tests:
+
+```bash
+npm run test
+# or
+yarn test
+```
+
+To see test coverage:
+
+```bash
+npm run test:coverage
+# or
+yarn test:coverage
+```
+
+## Project Structure
+
+```
+rps-game/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # Reusable UI components
+│   ├── constants/       # Game constants and configurations
+│   ├── hooks/           # Custom React hooks
+│   ├── utils/           # Utility functions
+│   ├── __tests__/       # Test files
+│   ├── App.tsx          # Main App component
+│   ├── App.scss         # Global styles
+│   ├── main.tsx         # Entry point
+│   └── index.scss       # Base styles
+├── .eslintrc.cjs        # ESLint configuration
+├── .prettierrc          # Prettier configuration
+├── tsconfig.json        # TypeScript configuration
+├── vite.config.ts       # Vite configuration
+└── package.json         # Project dependencies and scripts
 ```
