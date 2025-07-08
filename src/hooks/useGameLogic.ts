@@ -2,7 +2,6 @@ import { useReducer, useCallback } from 'react';
 import { GestureType, GameOutcome, GAME_CONFIG } from '../constants/gestures';
 import { determineWinner } from '../utils/determineWinner';
 
-// Define the game state type
 export interface GameState {
   playerScore: number;
   computerScore: number;
@@ -13,13 +12,11 @@ export interface GameState {
   roundInProgress: boolean;
 }
 
-// Define action types for the reducer
 type GameAction =
   | { type: 'MAKE_CHOICE'; payload: { playerChoice: GestureType } }
   | { type: 'COMPLETE_ROUND' }
   | { type: 'RESET_GAME' };
 
-// Initial state
 const initialState: GameState = {
   playerScore: 0,
   computerScore: 0,
