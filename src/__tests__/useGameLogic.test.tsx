@@ -4,7 +4,6 @@ import { useGameLogic } from '../hooks/useGameLogic';
 import type { ComputerChoiceGenerator } from '../hooks/useGameLogic';
 import { GameOutcome, GestureType } from '../constants/gestures';
 
-// Mock implementation of ComputerChoiceGenerator for predictable test results
 class MockComputerChoiceGenerator implements ComputerChoiceGenerator {
   private choice: GestureType;
 
@@ -31,12 +30,10 @@ describe('useGameLogic', () => {
   });
 
   it('should process player win correctly', () => {
-    // Create a mock that always returns scissors (rock beats scissors)
     const mockGenerator = new MockComputerChoiceGenerator(GestureType.SCISSORS);
     const { result } = renderHook(() => useGameLogic(mockGenerator));
     
     act(() => {
-      // Player chooses rock
       result.current.makeChoice(GestureType.ROCK);
     });
     
@@ -49,12 +46,10 @@ describe('useGameLogic', () => {
   });
 
   it('should process player loss correctly', () => {
-    // Create a mock that always returns paper (paper beats rock)
     const mockGenerator = new MockComputerChoiceGenerator(GestureType.PAPER);
     const { result } = renderHook(() => useGameLogic(mockGenerator));
     
     act(() => {
-      // Player chooses rock
       result.current.makeChoice(GestureType.ROCK);
     });
     
@@ -67,12 +62,10 @@ describe('useGameLogic', () => {
   });
 
   it('should process draw correctly', () => {
-    // Create a mock that always returns rock (rock vs rock = draw)
     const mockGenerator = new MockComputerChoiceGenerator(GestureType.ROCK);
     const { result } = renderHook(() => useGameLogic(mockGenerator));
     
     act(() => {
-      // Player also chooses rock
       result.current.makeChoice(GestureType.ROCK);
     });
     
@@ -91,15 +84,13 @@ describe('useGameLogic', () => {
     const { result } = renderHook(() => useGameLogic(mockGenerator));
     
     act(() => {
-      // Player chooses rock
       result.current.makeChoice(GestureType.ROCK);
     });
     
     expect(result.current.roundInProgress).toBe(true);
     
-    // Fast-forward animation time
     act(() => {
-      vi.advanceTimersByTime(500); // Match the ANIMATION_DURATION in constants
+      vi.advanceTimersByTime(500);
     });
     
     expect(result.current.roundInProgress).toBe(false);
@@ -111,19 +102,16 @@ describe('useGameLogic', () => {
     const mockGenerator = new MockComputerChoiceGenerator(GestureType.SCISSORS);
     const { result } = renderHook(() => useGameLogic(mockGenerator));
     
-    // First make a choice to update state
     act(() => {
       result.current.makeChoice(GestureType.ROCK);
     });
     
     expect(result.current.playerScore).toBe(1);
     
-    // Reset the game
     act(() => {
       result.current.resetGame();
     });
     
-    // Check that all state values are reset
     expect(result.current.playerScore).toBe(0);
     expect(result.current.computerScore).toBe(0);
     expect(result.current.playerChoice).toBeNull();

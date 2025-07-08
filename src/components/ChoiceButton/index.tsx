@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import type { FC, ButtonHTMLAttributes } from 'react';
 import { FaHandRock, FaHandPaper, FaHandScissors } from 'react-icons/fa';
 import { GestureType } from '../../constants/gestures';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface ChoiceButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   gesture: GestureType;
@@ -27,7 +27,6 @@ const ChoiceButton: FC<ChoiceButtonProps> = ({
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Get the appropriate icon based on gesture type
   const getGestureIcon = () => {
     switch (gesture) {
       case GestureType.ROCK:
@@ -39,7 +38,8 @@ const ChoiceButton: FC<ChoiceButtonProps> = ({
     }
   };
 
-  // Generate appropriate classes
+  console.log('getGestureIcon()', getGestureIcon());
+
   const buttonClasses = [
     styles.choiceButton,
     styles[gesture],
@@ -47,9 +47,10 @@ const ChoiceButton: FC<ChoiceButtonProps> = ({
     animate ? styles.entering : '',
     shaking ? styles.shaking : '',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
-  // Apply animation delay if needed
   const buttonStyle = {
     ...style,
     animationDelay: animate && animationDelay > 0 ? `${animationDelay}ms` : undefined,

@@ -4,10 +4,9 @@ import { useGameLogic } from './hooks/useGameLogic';
 import ChoiceButton from './components/ChoiceButton';
 import ScoreBoard from './components/ScoreBoard';
 import ResultModal from './components/ResultModal';
-import './App.css';
+import './App.scss';
 
 function App() {
-  // Game state and logic from custom hook
   const {
     playerScore,
     computerScore,
@@ -20,11 +19,9 @@ function App() {
     resetGame,
   } = useGameLogic();
 
-  // Track animations and display states
   const [showResult, setShowResult] = useState(false);
   const [resultMessage, setResultMessage] = useState('');
 
-  // Update result message when round result changes
   useEffect(() => {
     if (roundResult) {
       let message = '';
@@ -44,7 +41,6 @@ function App() {
       setResultMessage(message);
       setShowResult(true);
       
-      // Hide result message after a delay
       const timer = setTimeout(() => {
         setShowResult(false);
       }, 2000);
@@ -66,7 +62,6 @@ function App() {
         />
         
         <section className="game-area">
-          {/* Player choices */}
           <div className="player-area">
             <h2>Your Choice</h2>
             <div className="choices-container">
@@ -85,14 +80,12 @@ function App() {
             </div>
           </div>
 
-          {/* Result display */}
           <div className={`result-display ${showResult ? 'visible' : ''}`} aria-live="polite">
             {resultMessage && (
               <p className="result-message">{resultMessage}</p>
             )}
           </div>
 
-          {/* Computer choice */}
           <div className="computer-area">
             <h2>Computer's Choice</h2>
             <div className="choices-container">
@@ -118,7 +111,6 @@ function App() {
         <p>First to 5 points wins the game</p>
       </footer>
 
-      {/* Game over modal */}
       <ResultModal
         visible={gameOver}
         playerScore={playerScore}

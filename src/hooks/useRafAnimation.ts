@@ -18,11 +18,9 @@ export const useRafAnimation = (options: AnimationOptions) => {
   const rafIdRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
 
-  // Linear easing function (default if none provided)
   const defaultEasing = (t: number): number => t;
   const easing = options.easing || defaultEasing;
 
-  // Clean up animation frame on unmount or when animation stops
   const cancelAnimation = useCallback(() => {
     if (rafIdRef.current !== null) {
       cancelAnimationFrame(rafIdRef.current);
@@ -31,7 +29,6 @@ export const useRafAnimation = (options: AnimationOptions) => {
     }
   }, []);
 
-  // Animation frame callback
   const animate = useCallback((timestamp: number) => {
     if (startTimeRef.current === null) {
       startTimeRef.current = timestamp;
@@ -41,23 +38,19 @@ export const useRafAnimation = (options: AnimationOptions) => {
     const progress = Math.min(elapsed / options.duration, 1);
     const easedProgress = easing(progress);
 
-    // Call the update callback with the current progress
     options.onUpdate?.(easedProgress);
 
     if (progress < 1) {
-      // Continue the animation
       rafIdRef.current = requestAnimationFrame(animate);
     } else {
-      // Animation complete
       setIsAnimating(false);
       options.onComplete?.();
       cancelAnimation();
     }
   }, [options, easing, cancelAnimation]);
 
-  // Start the animation
   const startAnimation = useCallback(() => {
-    cancelAnimation(); // Cancel any existing animation
+    cancelAnimation();
     setIsAnimating(true);
     rafIdRef.current = requestAnimationFrame(animate);
     
@@ -66,7 +59,6 @@ export const useRafAnimation = (options: AnimationOptions) => {
     };
   }, [animate, cancelAnimation]);
 
-  // Clean up on unmount
   useEffect(() => {
     return () => {
       cancelAnimation();
@@ -80,7 +72,6 @@ export const useRafAnimation = (options: AnimationOptions) => {
   };
 };
 
-// Common easing functions
 export const easings = {
   linear: (t: number): number => t,
   easeInQuad: (t: number): number => t * t,

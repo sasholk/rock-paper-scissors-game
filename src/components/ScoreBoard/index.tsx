@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { FC } from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface ScoreBoardProps {
   playerScore: number;
@@ -8,22 +8,17 @@ interface ScoreBoardProps {
   showAnimation?: boolean;
 }
 
-/**
- * Displays the current score between player and computer
- */
 const ScoreBoard: FC<ScoreBoardProps> = ({
   playerScore,
   computerScore,
   showAnimation = true,
 }) => {
-  // Track which score changed for animation
   const [lastPlayerScore, setLastPlayerScore] = useState(playerScore);
   const [lastComputerScore, setLastComputerScore] = useState(computerScore);
   const [playerScoreChanged, setPlayerScoreChanged] = useState(false);
   const [computerScoreChanged, setComputerScoreChanged] = useState(false);
 
   useEffect(() => {
-    // Check if player score changed
     if (playerScore !== lastPlayerScore) {
       setLastPlayerScore(playerScore);
       if (showAnimation) {
@@ -34,7 +29,6 @@ const ScoreBoard: FC<ScoreBoardProps> = ({
   }, [playerScore, lastPlayerScore, showAnimation]);
 
   useEffect(() => {
-    // Check if computer score changed
     if (computerScore !== lastComputerScore) {
       setLastComputerScore(computerScore);
       if (showAnimation) {

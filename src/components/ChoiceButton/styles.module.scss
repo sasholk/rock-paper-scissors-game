@@ -9,36 +9,49 @@
   background-color: #f8f9fa;
   border: 2px solid #dee2e6;
   color: #343a40;
-  font-size: 2.5rem;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   overflow: hidden;
-}
 
-.choiceButton:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
 
-.choiceButton:active {
-  transform: translateY(-2px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
+  &:active {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
 
-.choiceButton:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-}
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
 
-.choiceButton:focus:not(:focus-visible) {
-  box-shadow: none;
-}
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
 
-.choiceButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
 }
 
 .rock {
@@ -81,9 +94,23 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
 }
 
 .entering {
@@ -92,21 +119,4 @@
 
 .shaking {
   animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .choiceButton {
-    width: 80px;
-    height: 80px;
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .choiceButton {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-  }
 }

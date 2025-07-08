@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { FC } from 'react';
 import { GAME_CONFIG } from '../../constants/gestures';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface ResultModalProps {
   visible: boolean;
@@ -22,14 +22,12 @@ const ResultModal: FC<ResultModalProps> = ({
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Auto-focus the replay button when modal becomes visible
   useEffect(() => {
     if (visible && buttonRef.current) {
       buttonRef.current.focus();
     }
   }, [visible]);
 
-  // Determine if the player has won
   const playerWon = playerScore >= GAME_CONFIG.POINTS_TO_WIN;
   const resultClass = playerWon ? styles.win : styles.lose;
 
