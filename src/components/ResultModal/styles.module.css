@@ -1,0 +1,124 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modalOverlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.modalOverlay.visible .modalContent {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #343a40;
+  margin-bottom: 1rem;
+}
+
+.modalMessage {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #495057;
+}
+
+.modalScore {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #212529;
+}
+
+.replayButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.replayButton:hover {
+  background-color: #0069d9;
+}
+
+.replayButton:active {
+  transform: scale(0.98);
+}
+
+.replayButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/* Animation for win result */
+@keyframes confetti {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+.win .modalContent {
+  background-image: radial-gradient(circle, #ffd700 1px, transparent 1px),
+                    radial-gradient(circle, #ff5252 1px, transparent 1px),
+                    radial-gradient(circle, #00c853 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: confetti 10s linear infinite;
+}
+
+.win .modalTitle {
+  color: #28a745;
+}
+
+.lose .modalTitle {
+  color: #dc3545;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 1.5rem;
+  }
+  
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+  
+  .modalMessage {
+    font-size: 1rem;
+  }
+  
+  .modalScore {
+    font-size: 2rem;
+  }
+}
